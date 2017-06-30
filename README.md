@@ -1,2 +1,2 @@
-# Watson-Bot
+# Watson-Bot [![Codacy Badge](https://api.codacy.com/project/badge/Grade/b8996f0e032147cdbb2ad236c885a677)](https://www.codacy.com/app/Discord-Dutch-HypeSquad/Watson-Bot?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Discord-Dutch-HypeSquad/Watson-Bot&amp;utm_campaign=Badge_Grade) [![CircleCI](https://circleci.com/gh/Discord-Dutch-HypeSquad/Watson-Bot.svg?style=svg)](https://circleci.com/gh/Discord-Dutch-HypeSquad/Watson-Bot)
 A discord bot to get statistics about your discord server.
