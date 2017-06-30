@@ -4,5 +4,6 @@ machine:
 
 test:
   override:
+    - gradle test
     - gradle jacocoTestReport
     - gradle sendCoverageToCodacy
