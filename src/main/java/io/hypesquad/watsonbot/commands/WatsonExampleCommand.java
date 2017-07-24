@@ -27,18 +27,20 @@ import sx.blah.discord.handle.impl.events.guild.channel.message.MessageReceivedE
 
 public final class WatsonExampleCommand implements WatsonCommand {
 
-    public WatsonExampleCommand() {}
+    public WatsonExampleCommand() {
+        //This constructor is intentionally empty. Noting special is needed here.
+    }
 
     // Do any checks here because this get's ran first
     @Override
-    public boolean called(String[] args, MessageReceivedEvent event) {
+    public boolean called(final String[] args, final MessageReceivedEvent event) {
         // Bots are not allowed to run this command
         return !event.getAuthor().isBot();
     }
 
     // The action of the command.
     @Override
-    public void action(String[] args, MessageReceivedEvent event) {
+    public void action(final String[] args, final MessageReceivedEvent event) {
         event.getChannel().sendMessage("This is a example command.");
     }
 

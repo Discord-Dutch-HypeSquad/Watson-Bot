@@ -29,15 +29,17 @@ import sx.blah.discord.handle.impl.events.guild.channel.message.MessageReceivedE
 
 public final class WatsonHelpCommand implements WatsonCommand {
 
-    public WatsonHelpCommand() {}
+    public WatsonHelpCommand() {
+        //This constructor is intentionally empty. Noting special is needed here.
+    }
 
     @Override
-    public boolean called(String[] args, MessageReceivedEvent event) {
+    public boolean called(final String[] args, final MessageReceivedEvent event) {
         return true;
     }
 
     @Override
-    public void action(String[] args, MessageReceivedEvent event) {
+    public void action(final String[] args, final MessageReceivedEvent event) {
 
         final StringBuilder sb = new StringBuilder().append("```\n");
 
