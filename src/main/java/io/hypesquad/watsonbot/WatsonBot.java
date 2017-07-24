@@ -24,8 +24,8 @@ import io.hypesquad.watsonbot.event.WatsonEventListener;
 import sx.blah.discord.api.ClientBuilder;
 import sx.blah.discord.api.IDiscordClient;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Represents the main class
@@ -37,7 +37,7 @@ public class WatsonBot {
     /**
      * This stores all the commands.
      */
-    public static Map<String, WatsonCommand> commands = new HashMap<>();
+    public static Map<String, WatsonCommand> commands = new ConcurrentHashMap<>();
 
     public static void main(final String... args) {
         if (args.length < 1)

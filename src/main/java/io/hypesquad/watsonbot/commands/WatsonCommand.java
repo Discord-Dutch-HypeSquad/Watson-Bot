@@ -28,23 +28,23 @@ import sx.blah.discord.handle.impl.events.guild.channel.message.MessageReceivedE
 public interface WatsonCommand {
 
     /**
-     * This method get's ran before the command's action is executed
+     * This method is ran before the command's action is executed
      * @param args the arguments from the command
      * @param event the MessageReceivedEvent from D4J
      * @return true or false depending on some checks that we run
      */
-    boolean called(final String[] args, final MessageReceivedEvent event);
+    boolean checkCommand(final String[] args, final MessageReceivedEvent event);
 
     /**
      * This is the action of the command
-     * @param args @param args the arguments from the command
+     * @param args the arguments from the command
      * @param event the MessageReceivedEvent from D4J
      */
-    void action(final String[] args, final MessageReceivedEvent event);
+    void executeCommand(final String[] args, final MessageReceivedEvent event);
 
     /**
      * The instructions of the command
      * @return String
      */
-    String help();
+    String commandHelp();
 }

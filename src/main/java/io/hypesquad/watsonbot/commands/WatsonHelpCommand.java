@@ -29,34 +29,29 @@ import sx.blah.discord.handle.impl.events.guild.channel.message.MessageReceivedE
 
 public final class WatsonHelpCommand implements WatsonCommand {
 
-    public WatsonHelpCommand() {
-        //This constructor is intentionally empty. Noting special is needed here.
-    }
-
     @Override
-    public boolean called(final String[] args, final MessageReceivedEvent event) {
+    public boolean checkCommand(final String[] args, final MessageReceivedEvent event) {
         return true;
     }
 
     @Override
-    public void action(final String[] args, final MessageReceivedEvent event) {
+    public void executeCommand(final String[] args, final MessageReceivedEvent event) {
 
-        final StringBuilder sb = new StringBuilder().append("```\n");
+        final StringBuilder stringBuilder = new StringBuilder(20).append("```\n");
 
         for (final String cmd : WatsonBot.commands.keySet()) {
-            sb.append(WatsonUtil.getProperty("prefix"))
+            stringBuilder.append(WatsonUtil.getProperty("prefix"))
                     .append(cmd)
                     .append(" > ")
-                    .append(WatsonBot.commands.get(cmd).help())
-                    .append("\n");
+                    .append(WatsonBot.commands.get(cmd).commandHelp() + "\n");
         }
-        sb.append("```");
-        event.getChannel().sendMessage(sb.toString());
+        stringBuilder.append("```");
+        event.getChannel().sendMessage(stringBuilder.toString());
 
     }
 
     @Override
-    public String help() {
+    public String commandHelp() {
         return "Shows a list of all the commands";
     }
 }

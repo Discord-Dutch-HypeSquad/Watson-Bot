@@ -33,20 +33,20 @@ public final class WatsonExampleCommand implements WatsonCommand {
 
     // Do any checks here because this get's ran first
     @Override
-    public boolean called(final String[] args, final MessageReceivedEvent event) {
+    public boolean checkCommand(final String[] args, final MessageReceivedEvent event) {
         // Bots are not allowed to run this command
         return !event.getAuthor().isBot();
     }
 
     // The action of the command.
     @Override
-    public void action(final String[] args, final MessageReceivedEvent event) {
+    public void executeCommand(final String[] args, final MessageReceivedEvent event) {
         event.getChannel().sendMessage("This is a example command.");
     }
 
     // How to use the command
     @Override
-    public String help() {
+    public String commandHelp() {
         return "A command that shows how commands are structured.";
     }
 

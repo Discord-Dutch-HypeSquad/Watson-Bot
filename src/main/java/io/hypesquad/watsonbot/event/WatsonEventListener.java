@@ -44,7 +44,9 @@ public class WatsonEventListener {
         //change to constant if it's used multiple times
         final String prefix = WatsonUtil.getProperty("prefix");
 
-        if (!message.startsWith(prefix)) return;
+        if (!message.startsWith(prefix)) {
+            return;
+        }
 
         //Handle command
         final ArrayList<String> split = new ArrayList<>();
@@ -60,8 +62,10 @@ public class WatsonEventListener {
 
         // Check if the command exist and if it does, run it
         if(commands.containsKey(calledCommand)) {
-            final boolean safe = commands.get(calledCommand).called(args, event);
-            if(safe) commands.get(calledCommand).action(args, event);
+            final boolean safe = commands.get(calledCommand).checkCommand(args, event);
+            if(safe) {
+                commands.get(calledCommand).executeCommand(args, event);
+            }
         }
     }
 }
