@@ -17,9 +17,12 @@
 
 package io.hypesquad.watsonbot;
 
+import io.hypesquad.watsonbot.commands.*;
 import io.hypesquad.watsonbot.event.WatsonEventListener;
 import sx.blah.discord.api.ClientBuilder;
 import sx.blah.discord.api.IDiscordClient;
+
+import java.util.TreeMap;
 
 /**
  * Represents the main class
@@ -28,6 +31,9 @@ import sx.blah.discord.api.IDiscordClient;
  */
 public class WatsonBot {
 
+    // This will store all of our commands
+    public static final TreeMap<String, WatsonCommand> commands = new TreeMap<>();
+
     public static void main(final String... args) {
         if (args.length < 1)
             throw new IllegalArgumentException("WatsonBot requires a token!");
@@ -35,5 +41,14 @@ public class WatsonBot {
         IDiscordClient client = new ClientBuilder().withToken(args[0]).login();
 
         client.getDispatcher().registerListener(new WatsonEventListener());
+
+        //Register the commands
+        registerCommands();
+    }
+
+    private static void registerCommands() {
+        // Add the commands
+        commands.put("help", new WatsonHelpCommand());
+        commands.put("example", new WatsonExampleCommand());
     }
 }
