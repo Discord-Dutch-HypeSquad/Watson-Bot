@@ -27,7 +27,8 @@ import sx.blah.discord.handle.impl.events.guild.channel.message.MessageReceivedE
 
 public interface WatsonCommand {
 
-    public boolean called(String[] args, MessageReceivedEvent event);
-    public void action(String[] args, MessageReceivedEvent event);
-    public String help();
+    boolean called(String[] args, MessageReceivedEvent event);
+    void action(String[] args, MessageReceivedEvent event);
+
+    String help();
 }

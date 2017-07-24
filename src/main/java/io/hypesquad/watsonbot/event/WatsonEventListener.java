@@ -24,7 +24,7 @@ import sx.blah.discord.api.events.EventSubscriber;
 import sx.blah.discord.handle.impl.events.guild.channel.message.MessageReceivedEvent;
 
 import java.util.ArrayList;
-import java.util.TreeMap;
+import java.util.Map;
 
 /**
  * Represents the global EventListener
@@ -33,30 +33,34 @@ import java.util.TreeMap;
  */
 public class WatsonEventListener {
 
-    //Easy access to our commands
-    TreeMap<String, WatsonCommand> commands = WatsonBot.commands;
+    /**
+     * This is for easy access to your commands.
+     */
+    private final transient Map<String, WatsonCommand> commands = WatsonBot.commands;
 
     @EventSubscriber
     public void onMessageReceivedEvent(MessageReceivedEvent event) {
         final String message = event.getMessage().getContent();
-        final String prefix = WatsonUtil.getProperty("prefix"); //change to constant if it's used multiple times
+        //change to constant if it's used multiple times
+        final String prefix = WatsonUtil.getProperty("prefix");
 
-        if (!message.startsWith(prefix))
-            return;
+        if (!message.startsWith(prefix)) return;
 
         //Handle command
-        ArrayList<String> split = new ArrayList<>();
-        String raw = message;
-        String beheaded = raw.replaceFirst(prefix, "");
-        String[] SplitBeheaded = beheaded.split(" ");
-        for(String s : SplitBeheaded){split.add(s);}
-        String calledCommand = split.get(0).toLowerCase();
-        String[] args = new String[split.size() - 1];
+        final ArrayList<String> split = new ArrayList<>();
+        final String raw = message;
+        final String beheaded = raw.replaceFirst(prefix, "");
+        final String[] SplitBeheaded = beheaded.split(" ");
+        for(final String s : SplitBeheaded) {
+            split.add(s);
+        }
+        final String calledCommand = split.get(0).toLowerCase();
+        final String[] args = new String[split.size() - 1];
         split.subList(1, split.size()).toArray(args);
 
         // Check if the command exist and if it does, run it
-        if(commands.containsKey(calledCommand)){
-            boolean safe = commands.get(calledCommand).called(args, event);
+        if(commands.containsKey(calledCommand)) {
+            final boolean safe = commands.get(calledCommand).called(args, event);
             if(safe) commands.get(calledCommand).action(args, event);
         }
     }

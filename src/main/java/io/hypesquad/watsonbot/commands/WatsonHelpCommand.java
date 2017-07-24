@@ -27,7 +27,9 @@ import sx.blah.discord.handle.impl.events.guild.channel.message.MessageReceivedE
  * @author Duncan
  */
 
-public class WatsonHelpCommand implements WatsonCommand {
+public final class WatsonHelpCommand implements WatsonCommand {
+
+    public WatsonHelpCommand() {}
 
     @Override
     public boolean called(String[] args, MessageReceivedEvent event) {
@@ -37,13 +39,17 @@ public class WatsonHelpCommand implements WatsonCommand {
     @Override
     public void action(String[] args, MessageReceivedEvent event) {
 
-        StringBuilder s = new StringBuilder().append("```\n");
+        final StringBuilder sb = new StringBuilder().append("```\n");
 
-        for (String cmd : WatsonBot.commands.keySet()) {
-            s.append(WatsonUtil.getProperty("prefix")).append(cmd).append(" > ").append(WatsonBot.commands.get(cmd).help()).append("\n");
+        for (final String cmd : WatsonBot.commands.keySet()) {
+            sb.append(WatsonUtil.getProperty("prefix"))
+                    .append(cmd)
+                    .append(" > ")
+                    .append(WatsonBot.commands.get(cmd).help())
+                    .append("\n");
         }
-        s.append("```");
-        event.getChannel().sendMessage(s.toString());
+        sb.append("```");
+        event.getChannel().sendMessage(sb.toString());
 
     }
 

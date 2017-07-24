@@ -17,11 +17,14 @@
 
 package io.hypesquad.watsonbot;
 
-import io.hypesquad.watsonbot.commands.*;
+import io.hypesquad.watsonbot.commands.WatsonCommand;
+import io.hypesquad.watsonbot.commands.WatsonExampleCommand;
+import io.hypesquad.watsonbot.commands.WatsonHelpCommand;
 import io.hypesquad.watsonbot.event.WatsonEventListener;
 import sx.blah.discord.api.ClientBuilder;
 import sx.blah.discord.api.IDiscordClient;
 
+import java.util.Map;
 import java.util.TreeMap;
 
 /**
@@ -29,10 +32,12 @@ import java.util.TreeMap;
  *
  * @author Kevin
  */
-public class WatsonBot {
+public final class WatsonBot {
 
-    // This will store all of our commands
-    public static final TreeMap<String, WatsonCommand> commands = new TreeMap<>();
+    /**
+     * This stores all the commands.
+     */
+    public static Map<String, WatsonCommand> commands = new TreeMap<>();
 
     public static void main(final String... args) {
         if (args.length < 1)
@@ -46,6 +51,9 @@ public class WatsonBot {
         registerCommands();
     }
 
+    /**
+     * This method will register our commands.
+     */
     private static void registerCommands() {
         // Add the commands
         commands.put("help", new WatsonHelpCommand());

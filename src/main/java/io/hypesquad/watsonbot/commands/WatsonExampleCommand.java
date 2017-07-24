@@ -25,12 +25,15 @@ import sx.blah.discord.handle.impl.events.guild.channel.message.MessageReceivedE
  * @author Duncan
  */
 
-public class WatsonExampleCommand implements WatsonCommand {
+public final class WatsonExampleCommand implements WatsonCommand {
+
+    public WatsonExampleCommand() {}
 
     // Do any checks here because this get's ran first
     @Override
     public boolean called(String[] args, MessageReceivedEvent event) {
-        return true;
+        // Bots are not allowed to run this command
+        return !event.getAuthor().isBot();
     }
 
     // The action of the command.
