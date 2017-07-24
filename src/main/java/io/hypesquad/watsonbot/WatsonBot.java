@@ -54,7 +54,7 @@ public final class WatsonBot {
     /**
      * This method will register our commands.
      */
-    private static void registerCommands() {
+    public static void registerCommands() {
         // Add the commands
         commands.put("help", new WatsonHelpCommand());
         commands.put("example", new WatsonExampleCommand());
