@@ -17,35 +17,42 @@
 
 package io.hypesquad.watsonbot.commands;
 
-import org.apache.commons.lang3.StringUtils;
+import io.hypesquad.watsonbot.WatsonBot;
+import io.hypesquad.watsonbot.util.WatsonUtil;
 import sx.blah.discord.handle.impl.events.guild.channel.message.MessageReceivedEvent;
 
 /**
- * Represents the example command
+ * Represents the help command
  *
  * @author Duncan
  */
 
-public final class AbstractWatsonExampleCommand extends AbstractWatsonCommand {
+public final class WatsonHelpCommand extends AbstractWatsonCommand {
 
-    // Do any checks here because this get's ran first
     @Override
     public boolean checkCommand(final String[] args, final MessageReceivedEvent event) {
-        // Bots are not allowed to run this command
-        return !event.getAuthor().isBot();
+        return true;
     }
 
-    // The action of the command.
     @Override
     public void executeCommand(final String[] args, final MessageReceivedEvent event) {
-        // Send a message with the arguments that the user has put in
-        event.getChannel().sendMessage("This is a example command." + StringUtils.join(args, " "));
+
+        final StringBuilder stringBuilder = new StringBuilder(80).append("```\n");
+
+        for (final String cmd : WatsonBot.commands.keySet()) {
+            stringBuilder.append(WatsonUtil.getProperty("prefix"))
+                    .append(cmd)
+                    .append(" > ")
+                    .append(WatsonBot.commands.get(cmd).commandHelp())
+                    .append('\n');
+        }
+        stringBuilder.append("```");
+        event.getChannel().sendMessage(stringBuilder.toString());
+
     }
 
-    // How to use the command
     @Override
     public String commandHelp() {
-        return "A command that shows how commands are structured.";
+        return "Shows a list of all the commands";
     }
-
 }

@@ -27,7 +27,7 @@ public class WatsonCommandTest {
     public void testCommandExistence() {
         WatsonBot.registerCommands();
         String key = "help";
-        AbstractWatsonHelpCommand value = new AbstractWatsonHelpCommand();
+        WatsonHelpCommand value = new WatsonHelpCommand();
 
         assertEquals("Retrieved command does not match stored command for same key",
                 WatsonBot.commands.get(key), value);

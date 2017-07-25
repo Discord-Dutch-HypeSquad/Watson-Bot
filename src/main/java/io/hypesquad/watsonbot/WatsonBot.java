@@ -18,8 +18,8 @@
 package io.hypesquad.watsonbot;
 
 import io.hypesquad.watsonbot.commands.AbstractWatsonCommand;
-import io.hypesquad.watsonbot.commands.AbstractWatsonExampleCommand;
-import io.hypesquad.watsonbot.commands.AbstractWatsonHelpCommand;
+import io.hypesquad.watsonbot.commands.WatsonExampleCommand;
+import io.hypesquad.watsonbot.commands.WatsonHelpCommand;
 import io.hypesquad.watsonbot.event.WatsonEventListener;
 import sx.blah.discord.api.ClientBuilder;
 import sx.blah.discord.api.IDiscordClient;
@@ -56,7 +56,7 @@ public class WatsonBot {
      */
     public static void registerCommands() {
         // Add the commands
-        commands.put("help", new AbstractWatsonHelpCommand());
-        commands.put("example", new AbstractWatsonExampleCommand());
+        commands.put("help", new WatsonHelpCommand());
+        commands.put("example", new WatsonExampleCommand());
     }
 }
