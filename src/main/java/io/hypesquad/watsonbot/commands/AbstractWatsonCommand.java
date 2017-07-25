@@ -58,7 +58,7 @@ public abstract class AbstractWatsonCommand {
      * @return true if the commands are compared successfully
      */
     @Override
-    public boolean equals(Object object) {
+    public boolean equals(final Object object) {
 
         if (object == null) {
             return false;
