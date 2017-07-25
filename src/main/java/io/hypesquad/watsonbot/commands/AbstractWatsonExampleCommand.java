@@ -26,7 +26,7 @@ import sx.blah.discord.handle.impl.events.guild.channel.message.MessageReceivedE
  * @author Duncan
  */
 
-public final class WatsonExampleCommand extends WatsonCommand {
+public final class AbstractWatsonExampleCommand extends AbstractWatsonCommand {
 
     // Do any checks here because this get's ran first
     @Override

@@ -17,9 +17,9 @@
 
 package io.hypesquad.watsonbot;
 
-import io.hypesquad.watsonbot.commands.WatsonCommand;
-import io.hypesquad.watsonbot.commands.WatsonExampleCommand;
-import io.hypesquad.watsonbot.commands.WatsonHelpCommand;
+import io.hypesquad.watsonbot.commands.AbstractWatsonCommand;
+import io.hypesquad.watsonbot.commands.AbstractWatsonExampleCommand;
+import io.hypesquad.watsonbot.commands.AbstractWatsonHelpCommand;
 import io.hypesquad.watsonbot.event.WatsonEventListener;
 import sx.blah.discord.api.ClientBuilder;
 import sx.blah.discord.api.IDiscordClient;
@@ -37,7 +37,7 @@ public class WatsonBot {
     /**
      * This stores all the commands.
      */
-    public static Map<String, WatsonCommand> commands = new ConcurrentHashMap<>();
+    public static Map<String, AbstractWatsonCommand> commands = new ConcurrentHashMap<>();
 
     public static void main(final String... args) {
         if (args.length < 1)
@@ -56,7 +56,7 @@ public class WatsonBot {
      */
     public static void registerCommands() {
         // Add the commands
-        commands.put("help", new WatsonHelpCommand());
-        commands.put("example", new WatsonExampleCommand());
+        commands.put("help", new AbstractWatsonHelpCommand());
+        commands.put("example", new AbstractWatsonExampleCommand());
     }
 }

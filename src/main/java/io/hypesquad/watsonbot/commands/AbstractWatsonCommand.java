@@ -25,7 +25,7 @@ import sx.blah.discord.handle.impl.events.guild.channel.message.MessageReceivedE
  * @author Duncan
  */
 
-public abstract class WatsonCommand {
+public abstract class AbstractWatsonCommand {
 
     /**
      * This method is ran before the command's action is executed
@@ -50,13 +50,13 @@ public abstract class WatsonCommand {
 
     /**
      * An equals method to compare two command objects
-     * @param c The command object
+     * @param command The command object
      * @return true if the commands are compared successfully
      */
-    public boolean equals(WatsonCommand c){
+    public boolean equals(final AbstractWatsonCommand command){
 
-        if (c == null) { return false; }
+        if (command == null) { return false; }
 
-        return ( (this.commandHelp()).equals(c.commandHelp()) );
+        return this.commandHelp().equals(command.commandHelp());
     }
 }

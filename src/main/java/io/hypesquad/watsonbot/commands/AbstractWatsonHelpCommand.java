@@ -27,7 +27,7 @@ import sx.blah.discord.handle.impl.events.guild.channel.message.MessageReceivedE
  * @author Duncan
  */
 
-public final class WatsonHelpCommand extends WatsonCommand {
+public final class AbstractWatsonHelpCommand extends AbstractWatsonCommand {
 
     @Override
     public boolean checkCommand(final String[] args, final MessageReceivedEvent event) {

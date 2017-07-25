@@ -18,7 +18,7 @@
 package io.hypesquad.watsonbot.event;
 
 import io.hypesquad.watsonbot.WatsonBot;
-import io.hypesquad.watsonbot.commands.WatsonCommand;
+import io.hypesquad.watsonbot.commands.AbstractWatsonCommand;
 import io.hypesquad.watsonbot.util.WatsonUtil;
 import sx.blah.discord.api.events.EventSubscriber;
 import sx.blah.discord.handle.impl.events.guild.channel.message.MessageReceivedEvent;
@@ -37,7 +37,7 @@ public class WatsonEventListener {
     /**
      * This is for easy access to your commands.
      */
-    private final transient Map<String, WatsonCommand> commands = WatsonBot.commands;
+    private final transient Map<String, AbstractWatsonCommand> commands = WatsonBot.commands;
 
     @EventSubscriber
     public void onMessageReceivedEvent(MessageReceivedEvent event) {
