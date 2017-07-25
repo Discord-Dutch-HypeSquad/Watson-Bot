@@ -17,6 +17,7 @@
 
 package io.hypesquad.watsonbot.commands;
 
+import org.apache.commons.lang3.StringUtils;
 import sx.blah.discord.handle.impl.events.guild.channel.message.MessageReceivedEvent;
 
 /**
@@ -25,7 +26,7 @@ import sx.blah.discord.handle.impl.events.guild.channel.message.MessageReceivedE
  * @author Duncan
  */
 
-public final class WatsonExampleCommand implements WatsonCommand {
+public final class WatsonExampleCommand extends WatsonCommand {
 
     // Do any checks here because this get's ran first
     @Override
@@ -37,7 +38,8 @@ public final class WatsonExampleCommand implements WatsonCommand {
     // The action of the command.
     @Override
     public void executeCommand(final String[] args, final MessageReceivedEvent event) {
-        event.getChannel().sendMessage("This is a example command.");
+        // Send a message with the arguments that the user has put in
+        event.getChannel().sendMessage("This is a example command." + StringUtils.join(args, " "));
     }
 
     // How to use the command

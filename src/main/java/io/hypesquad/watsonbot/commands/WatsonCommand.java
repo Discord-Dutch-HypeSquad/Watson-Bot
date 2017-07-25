@@ -25,7 +25,7 @@ import sx.blah.discord.handle.impl.events.guild.channel.message.MessageReceivedE
  * @author Duncan
  */
 
-public interface WatsonCommand {
+public abstract class WatsonCommand {
 
     /**
      * This method is ran before the command's action is executed
@@ -33,18 +33,30 @@ public interface WatsonCommand {
      * @param event the MessageReceivedEvent from D4J
      * @return true or false depending on some checks that we run
      */
-    boolean checkCommand(final String[] args, final MessageReceivedEvent event);
+    public abstract boolean checkCommand(final String[] args, final MessageReceivedEvent event);
 
     /**
      * This is the action of the command
      * @param args the arguments from the command
      * @param event the MessageReceivedEvent from D4J
      */
-    void executeCommand(final String[] args, final MessageReceivedEvent event);
+    public abstract void executeCommand(final String[] args, final MessageReceivedEvent event);
 
     /**
      * The instructions of the command
      * @return String
      */
-    String commandHelp();
+    public abstract String commandHelp();
+
+    /**
+     * An equals method to compare two command objects
+     * @param c The command object
+     * @return true if the commands are compared successfully
+     */
+    public boolean equals(WatsonCommand c){
+
+        if (c == null) { return false; }
+
+        return ( (this.commandHelp()).equals(c.commandHelp()) );
+    }
 }

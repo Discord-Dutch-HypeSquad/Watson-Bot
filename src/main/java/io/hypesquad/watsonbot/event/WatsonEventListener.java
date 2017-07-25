@@ -50,10 +50,9 @@ public class WatsonEventListener {
         }
 
         //Handle command
-        final String raw = message;
-        final String beheaded = raw.replaceFirst(prefix, "");
-        final String[] SplitBeheaded = beheaded.split(" ");
-        final List<String> split = Arrays.asList(SplitBeheaded);
+        final List<String> split = Arrays.asList(message
+                .replaceFirst(prefix, "")
+                .split(" "));
         final String calledCommand = split.get(0).toLowerCase();
         final String[] args = new String[split.size() - 1];
         split.subList(1, split.size()).toArray(args);
