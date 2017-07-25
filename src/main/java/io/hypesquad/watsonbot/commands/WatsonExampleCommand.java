@@ -27,10 +27,6 @@ import sx.blah.discord.handle.impl.events.guild.channel.message.MessageReceivedE
 
 public final class WatsonExampleCommand implements WatsonCommand {
 
-    public WatsonExampleCommand() {
-        //This constructor is intentionally empty. Noting special is needed here.
-    }
-
     // Do any checks here because this get's ran first
     @Override
     public boolean checkCommand(final String[] args, final MessageReceivedEvent event) {

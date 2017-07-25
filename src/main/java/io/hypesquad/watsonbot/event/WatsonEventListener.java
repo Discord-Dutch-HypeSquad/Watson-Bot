@@ -23,7 +23,8 @@ import io.hypesquad.watsonbot.util.WatsonUtil;
 import sx.blah.discord.api.events.EventSubscriber;
 import sx.blah.discord.handle.impl.events.guild.channel.message.MessageReceivedEvent;
 
-import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -49,13 +50,10 @@ public class WatsonEventListener {
         }
 
         //Handle command
-        final ArrayList<String> split = new ArrayList<>();
         final String raw = message;
         final String beheaded = raw.replaceFirst(prefix, "");
         final String[] SplitBeheaded = beheaded.split(" ");
-        for(final String s : SplitBeheaded) {
-            split.add(s);
-        }
+        final List<String> split = Arrays.asList(SplitBeheaded);
         final String calledCommand = split.get(0).toLowerCase();
         final String[] args = new String[split.size() - 1];
         split.subList(1, split.size()).toArray(args);
