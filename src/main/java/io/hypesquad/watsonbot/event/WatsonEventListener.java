@@ -50,12 +50,9 @@ public class WatsonEventListener {
         }
 
         //Handle command
-        final List<String> split = Arrays.asList(message
-                .replaceFirst(prefix, "")
-                .split(" "));
-        final String calledCommand = split.get(0).toLowerCase();
-        final String[] args = new String[split.size() - 1];
-        split.subList(1, split.size()).toArray(args);
+        final String[] split = message.substring(message.indexOf(prefix) + 1, message.length()).split(" ");
+        final String calledCommand = split[0];
+        final String[] args = Arrays.copyOfRange(split, 1, split.length);
 
         // Check if the command exist and if it does, run it
         if (commands.containsKey(calledCommand)) {
