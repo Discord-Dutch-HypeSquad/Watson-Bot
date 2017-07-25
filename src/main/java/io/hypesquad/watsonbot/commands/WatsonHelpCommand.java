@@ -43,7 +43,7 @@ public final class WatsonHelpCommand implements WatsonCommand {
             stringBuilder.append(WatsonUtil.getProperty("prefix"))
                     .append(cmd)
                     .append(" > ")
-                    .append(WatsonBot.commands.get(cmd).commandHelp() + "\n");
+                    .append(WatsonBot.commands.get(cmd).commandHelp() + '\n');
         }
         stringBuilder.append("```");
         event.getChannel().sendMessage(stringBuilder.toString());
