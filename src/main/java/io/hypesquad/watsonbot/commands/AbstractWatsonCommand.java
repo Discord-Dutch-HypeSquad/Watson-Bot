@@ -29,7 +29,8 @@ public abstract class AbstractWatsonCommand {
 
     /**
      * This method is ran before the command's action is executed
-     * @param args the arguments from the command
+     *
+     * @param args  the arguments from the command
      * @param event the MessageReceivedEvent from D4J
      * @return true or false depending on some checks that we run
      */
@@ -37,25 +38,37 @@ public abstract class AbstractWatsonCommand {
 
     /**
      * This is the action of the command
-     * @param args the arguments from the command
+     *
+     * @param args  the arguments from the command
      * @param event the MessageReceivedEvent from D4J
      */
     public abstract void executeCommand(final String[] args, final MessageReceivedEvent event);
 
     /**
      * The instructions of the command
+     *
      * @return String
      */
     public abstract String commandHelp();
 
     /**
      * An equals method to compare two command objects
-     * @param command The command object
+     *
+     * @param object The command object
      * @return true if the commands are compared successfully
      */
-    public boolean equals(final AbstractWatsonCommand command){
+    @Override
+    public boolean equals(Object object) {
 
-        if (command == null) { return false; }
+        if (object == null) {
+            return false;
+        }
+
+        if (object.getClass() != this.getClass()) {
+            return false;
+        }
+
+        AbstractWatsonCommand command = (AbstractWatsonCommand) object;
 
         return this.commandHelp().equals(command.commandHelp());
     }

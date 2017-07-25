@@ -30,6 +30,6 @@ public class WatsonCommandTest {
         WatsonHelpCommand value = new WatsonHelpCommand();
 
         assertEquals("Retrieved command does not match stored command for same key",
-                WatsonBot.commands.get(key), value);
+                value, WatsonBot.commands.get(key));
     }
 }

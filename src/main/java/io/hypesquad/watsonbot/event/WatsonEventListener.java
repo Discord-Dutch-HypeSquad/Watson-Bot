@@ -58,9 +58,9 @@ public class WatsonEventListener {
         split.subList(1, split.size()).toArray(args);
 
         // Check if the command exist and if it does, run it
-        if(commands.containsKey(calledCommand)) {
+        if (commands.containsKey(calledCommand)) {
             final boolean safe = commands.get(calledCommand).checkCommand(args, event);
-            if(safe) {
+            if (safe) {
                 commands.get(calledCommand).executeCommand(args, event);
             }
         }
