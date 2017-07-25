@@ -13,6 +13,6 @@ public class WatsonCommandTest {
         WatsonHelpCommand value = new WatsonHelpCommand();
         WatsonBot.commands.put(key, value);
 
-        assertEquals(String.format("Tests if key %s equals %s", key, value.toString()), WatsonBot.commands.get(key), value);
+        assertEquals(WatsonBot.commands.get(key), value);
     }
 }
