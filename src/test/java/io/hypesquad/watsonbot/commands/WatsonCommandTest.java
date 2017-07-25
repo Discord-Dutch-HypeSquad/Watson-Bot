@@ -9,7 +9,7 @@ public class WatsonCommandTest {
 
     @Test
     public void testCommandExistence() {
-        String key = "help";
+        final String key = "help";
         final WatsonHelpCommand value = new WatsonHelpCommand();
         WatsonBot.commands.put(key, value);
 

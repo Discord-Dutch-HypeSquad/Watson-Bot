@@ -37,16 +37,16 @@ public final class WatsonHelpCommand implements WatsonCommand {
     @Override
     public void executeCommand(final String[] args, final MessageReceivedEvent event) {
 
-        String helpMessage = "```\n";
+        final StringBuilder stringBuilder = new StringBuilder(80).append("```\n");
 
         for (final String cmd : WatsonBot.commands.keySet()) {
-            helpMessage += WatsonUtil.getProperty("prefix")
-                    +cmd
-                    +" > "
-                    + WatsonBot.commands.get(cmd).commandHelp() + "\n";
+            stringBuilder.append(WatsonUtil.getProperty("prefix"))
+                    .append(cmd)
+                    .append(" > ")
+                    .append(WatsonBot.commands.get(cmd).commandHelp() + "\n");
         }
-        helpMessage += "```";
-        event.getChannel().sendMessage(helpMessage);
+        stringBuilder.append("```");
+        event.getChannel().sendMessage(stringBuilder.toString());
 
     }
 
