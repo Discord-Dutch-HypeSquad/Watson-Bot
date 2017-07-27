@@ -32,7 +32,7 @@ public abstract class AbstractWatsonCommand {
      *
      * @param args  the arguments from the command
      * @param event the MessageReceivedEvent from D4J
-     * @return true or false depending on some checks that we run
+     * @return ture if checks pass, false otherwise
      */
     public abstract boolean checkCommand(final String[] args, final MessageReceivedEvent event);
 
@@ -47,7 +47,7 @@ public abstract class AbstractWatsonCommand {
     /**
      * The instructions of the command
      *
-     * @return String
+     * @return help message for the command
      */
     public abstract String commandHelp();
 
@@ -55,7 +55,7 @@ public abstract class AbstractWatsonCommand {
      * An equals method to compare two command objects
      *
      * @param object The command object
-     * @return true if the commands are compared successfully
+     * @return if the given object is equal to this object
      */
     @Override
     public boolean equals(final Object object) {
