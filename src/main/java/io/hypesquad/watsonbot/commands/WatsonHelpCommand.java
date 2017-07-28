@@ -37,7 +37,7 @@ public final class WatsonHelpCommand extends AbstractWatsonCommand {
     @Override
     public void executeCommand(final String[] args, final MessageReceivedEvent event) {
 
-        final StringBuilder stringBuilder = new StringBuilder().append("```\n");
+        final StringBuilder stringBuilder = new StringBuilder(20).append("```\n");
 
         for (final String cmd : WatsonBot.commands.keySet()) {
             stringBuilder.append(WatsonUtil.getProperty("prefix"))
