@@ -19,6 +19,8 @@ package io.hypesquad.watsonbot.commands;
 
 import sx.blah.discord.handle.impl.events.guild.channel.message.MessageReceivedEvent;
 
+import java.util.Objects;
+
 /**
  * Represents a Command
  *
@@ -75,6 +77,6 @@ public abstract class AbstractWatsonCommand {
 
     @Override
     public int hashCode() {
-        return 1;
+        return Objects.hashCode(this);
     }
 }
