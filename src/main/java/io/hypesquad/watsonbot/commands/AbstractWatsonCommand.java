@@ -72,4 +72,9 @@ public abstract class AbstractWatsonCommand {
 
         return this.commandHelp().equals(command.commandHelp());
     }
+
+    @Override
+    public int hashCode() {
+        return 1;
+    }
 }
