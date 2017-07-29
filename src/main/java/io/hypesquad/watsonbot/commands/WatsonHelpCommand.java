@@ -29,7 +29,7 @@ import sx.blah.discord.handle.impl.events.guild.channel.message.MessageReceivedE
 
 public final class WatsonHelpCommand extends AbstractWatsonCommand {
 
-    private final int MAX_COMMAND_HELPMESSAGE_LENGTH = 20;
+    private final transient int MAX_HELPMESSAGE_LENGTH = 20;
 
     @Override
     public boolean checkCommand(final String[] args, final MessageReceivedEvent event) {
@@ -39,7 +39,7 @@ public final class WatsonHelpCommand extends AbstractWatsonCommand {
     @Override
     public void executeCommand(final String[] args, final MessageReceivedEvent event) {
 
-        final StringBuilder stringBuilder = new StringBuilder(MAX_COMMAND_HELPMESSAGE_LENGTH).append("```\n");
+        final StringBuilder stringBuilder = new StringBuilder(MAX_HELPMESSAGE_LENGTH).append("```\n");
 
         for (final String cmd : WatsonBot.commands.keySet()) {
             stringBuilder.append(WatsonUtil.getProperty("prefix"))
