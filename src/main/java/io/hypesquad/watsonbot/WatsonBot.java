@@ -17,15 +17,9 @@
 
 package io.hypesquad.watsonbot;
 
-import io.hypesquad.watsonbot.commands.AbstractWatsonCommand;
-import io.hypesquad.watsonbot.commands.WatsonExampleCommand;
-import io.hypesquad.watsonbot.commands.WatsonHelpCommand;
 import io.hypesquad.watsonbot.event.WatsonEventListener;
 import sx.blah.discord.api.ClientBuilder;
 import sx.blah.discord.api.IDiscordClient;
-
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Represents the main class
@@ -34,11 +28,6 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class WatsonBot {
 
-    /**
-     * This stores all the commands.
-     */
-    public static Map<String, AbstractWatsonCommand> commands = new ConcurrentHashMap<>();
-
     public static void main(final String... args) {
         if (args.length < 1)
             throw new IllegalArgumentException("WatsonBot requires a token!");
@@ -46,17 +35,5 @@ public class WatsonBot {
         IDiscordClient client = new ClientBuilder().withToken(args[0]).login();
 
         client.getDispatcher().registerListener(new WatsonEventListener());
-
-        //Register the commands
-        registerCommands();
-    }
-
-    /**
-     * This method will register our commands.
-     */
-    public static void registerCommands() {
-        // Add the commands
-        commands.put("help", new WatsonHelpCommand());
-        commands.put("example", new WatsonExampleCommand());
     }
 }

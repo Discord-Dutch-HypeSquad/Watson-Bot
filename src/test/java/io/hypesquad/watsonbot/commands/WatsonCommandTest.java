@@ -16,20 +16,20 @@
  */
 package io.hypesquad.watsonbot.commands;
 
-import io.hypesquad.watsonbot.WatsonBot;
+import io.hypesquad.watsonbot.managers.WatsonCommandManager;
+import io.hypesquad.watsonbot.objects.command.ICommand;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 public class WatsonCommandTest {
 
     @Test
     public void testCommandExistence() {
-        WatsonBot.registerCommands();
-        String key = "help";
-        WatsonHelpCommand value = new WatsonHelpCommand();
+        WatsonCommandManager manager = new WatsonCommandManager();
 
-        assertEquals("Retrieved command does not match stored command for same key",
-                value, WatsonBot.commands.get(key));
+        ICommand cmd = manager.getCommand("example");
+
+        assertNotNull("Command is null or not registered", cmd);
     }
 }

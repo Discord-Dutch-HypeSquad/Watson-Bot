@@ -17,14 +17,10 @@
 
 package io.hypesquad.watsonbot.event;
 
-import io.hypesquad.watsonbot.WatsonBot;
-import io.hypesquad.watsonbot.commands.AbstractWatsonCommand;
+import io.hypesquad.watsonbot.managers.WatsonCommandManager;
 import io.hypesquad.watsonbot.util.WatsonUtil;
 import sx.blah.discord.api.events.EventSubscriber;
 import sx.blah.discord.handle.impl.events.guild.channel.message.MessageReceivedEvent;
-
-import java.util.Arrays;
-import java.util.Map;
 
 /**
  * Represents the global EventListener
@@ -33,10 +29,7 @@ import java.util.Map;
  */
 public class WatsonEventListener {
 
-    /**
-     * This is for easy access to your commands.
-     */
-    private final transient Map<String, AbstractWatsonCommand> commands = WatsonBot.commands;
+    private static final WatsonCommandManager COMMAND_MANAGER = new WatsonCommandManager();
 
     @EventSubscriber
     public void onMessageReceivedEvent(MessageReceivedEvent event) {
@@ -47,18 +40,7 @@ public class WatsonEventListener {
         if (!message.startsWith(prefix)) {
             return;
         }
-
-        //Handle command
-        final String[] split = message.substring(message.indexOf(prefix) + 1, message.length()).split(" ");
-        final String calledCommand = split[0];
-        final String[] args = Arrays.copyOfRange(split, 1, split.length);
-
-        // Check if the command exist and if it does, run it
-        if (commands.containsKey(calledCommand)) {
-            final boolean safe = commands.get(calledCommand).checkCommand(args, event);
-            if (safe) {
-                commands.get(calledCommand).executeCommand(args, event);
-            }
-        }
+        //Handle the command
+        COMMAND_MANAGER.dispatchCommand(prefix, event);
     }
 }
