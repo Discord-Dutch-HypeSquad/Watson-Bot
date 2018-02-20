@@ -37,12 +37,14 @@ public class WatsonCommandManager {
      * @param command The command to add
      * @return {@code true} if the command was added
      */
-    private boolean addCommand(ICommand command) {
+    private boolean addCommand(final ICommand command) {
 
-        if(command.getName().contains(" "))
+        if(command.getName().contains(" ")) {
             throw new IllegalArgumentException("Names can't have spaces");
-        if(getCommand(command.getName()) != null)
+        }
+        if(getCommand(command.getName()) != null) {
             return false;
+        }
         commands.add(command);
         return true;
     }
@@ -51,15 +53,16 @@ public class WatsonCommandManager {
      * @param invoke The command that we are looking for
      * @return A possible null command that matches the invoke or alias
      */
-    public ICommand getCommand(String invoke) {
+    public ICommand getCommand(final String invoke) {
 
-        Optional<ICommand> foundInvoke = commands.stream().filter(it -> it.getName().equals(invoke)).findFirst();
+        Optional<ICommand> foundInvoke = commands.stream().filter(command -> command.getName().equals(invoke)).findFirst();
 
-        if(foundInvoke.isPresent())
+        if(foundInvoke.isPresent()) {
             return foundInvoke.get();
-        else {
-            Optional<ICommand> foundAlias = commands.stream().filter(it -> Arrays.asList(it.getAliases()).contains(invoke)).findFirst();
-            return foundAlias.isPresent() ? foundAlias.get() : null;
+        } else {
+            Optional<ICommand> foundAlias = commands.stream().filter(command -> Arrays.asList(command.getAliases()).contains(invoke)).findFirst();
+            //noinspection ConstantConditions
+            return foundAlias.get();
         }
     }
 
@@ -68,13 +71,14 @@ public class WatsonCommandManager {
      * @param prefix The prefix to replace in the message
      * @param event the event that was called with this message
      */
-    public void dispatchCommand(String prefix, MessageReceivedEvent event) {
+    public void dispatchCommand(final String prefix, final MessageReceivedEvent event) {
         String[] messageContent = event.getMessage().getContent().replaceFirst(prefix, "").split("\\s+");
         String invoke = messageContent[0];
 
         ICommand cmd = getCommand(invoke);
-        if(cmd != null)
+        if(cmd != null) {
             cmd.execute(invoke, Arrays.copyOfRange(messageContent, 1, messageContent.length), event);
+        }
     }
 
 }

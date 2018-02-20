@@ -28,9 +28,12 @@ import sx.blah.discord.api.IDiscordClient;
  */
 public class WatsonBot {
 
+    private WatsonBot() {}
+
     public static void main(final String... args) {
-        if (args.length < 1)
+        if (args.length < 1) {
             throw new IllegalArgumentException("WatsonBot requires a token!");
+        }
 
         IDiscordClient client = new ClientBuilder().withToken(args[0]).login();
 
