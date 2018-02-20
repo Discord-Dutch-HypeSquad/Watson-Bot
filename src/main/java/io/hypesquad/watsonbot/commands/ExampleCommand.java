@@ -10,7 +10,7 @@ import sx.blah.discord.handle.impl.events.guild.channel.message.MessageReceivedE
  */
 public class ExampleCommand implements ICommand {
     @Override
-    public void execute(String invoke, String[] args, MessageReceivedEvent event) {
+    public void execute(final String invoke, final String[] args, final MessageReceivedEvent event) {
         event.getChannel().sendMessage("This is an example");
     }
 

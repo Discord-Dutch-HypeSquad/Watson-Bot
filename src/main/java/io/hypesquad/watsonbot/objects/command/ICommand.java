@@ -15,7 +15,7 @@ public interface ICommand {
      * @param args Everything that comes after the invoke
      * @param event The {@link MessageReceivedEvent Event} that got fired when the command for the message
      */
-    void execute(String invoke, String[] args, MessageReceivedEvent event);
+    void execute(final String invoke, final String[] args, final MessageReceivedEvent event);
 
     /**
      * Returns the name of the command
