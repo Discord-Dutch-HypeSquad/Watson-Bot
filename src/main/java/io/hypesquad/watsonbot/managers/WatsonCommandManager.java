@@ -55,6 +55,11 @@ public class WatsonCommandManager {
      */
     public ICommand getCommand(final String invoke) {
 
+        //Return nothing if there are no commands
+        if(commands.size() == 0) {
+            return null;
+        }
+
         Optional<ICommand> foundInvoke = commands.stream().filter(command -> command.getName().equals(invoke)).findFirst();
 
         if(foundInvoke.isPresent()) {
